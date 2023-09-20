@@ -1,13 +1,15 @@
 package jeu;
 
+import java.util.Iterator;
+import java.util.ConcurrentModificationException;
+
 import cartes.Carte;
 
-public class Sabot {
+public class Sabot implements Iterable<Carte> {
 	private Carte[] pioche;
 	private int capacite;
 	private int nbCartes = 0;
 
-	
 	public Sabot(int capacite, int nbCartes) {
 		this.pioche = new Carte[capacite];
 		this.capacite = capacite;
@@ -35,6 +37,30 @@ public class Sabot {
 	public void ajouterFamilleCarte(Carte... cartes) throws Exception {
 		for (Carte carte : cartes) {
 			ajouterCarte(carte);
+		}
+	}
+	
+	
+	private class Iterateur implements Iterator<Carte> {
+		private int indiceIterateur =0;
+		private int nbOperationsReference = nbCartes;
+		private boolean nextEffectue = false;
+		
+		public boolean hasNext() {
+			
+		}
+		
+		public Carte next() {
+			
+		}
+		
+		public void remove() {
+			
+		}
+		
+		private void verificationConcurrence() {
+			if (nbOperationsReference != nbCartes)
+				throw new ConcurrentModificationException();
 		}
 	}
 }
