@@ -9,11 +9,11 @@ public class Parade extends Bataille {
 	public String toString() {
 		switch (type) {
 		case FEU:
-			return "FeuVert";
+			return "Feu Vert";
 		case ESSENCE:
 			return "Essence";
 		case CREVAISON:
-			return "RoueDeSecours";
+			return "Roue De Secours";
 		case ACCIDENT:
 			return "Reparations";
 		default:

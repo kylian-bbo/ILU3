@@ -1,5 +1,7 @@
 package cartes;
 
+import java.util.Objects;
+
 public abstract class Carte {
 	protected int nombre;
 	
@@ -10,4 +12,5 @@ public abstract class Carte {
 	public int getNombre() {
 		return nombre;
 	}
+
 }

@@ -9,9 +9,9 @@ public class Attaque extends Bataille {
 	public String toString() {
 		switch (type) {
 		case FEU:
-			return "FeuRouge";
+			return "Feu Rouge";
 		case ESSENCE:
-			return "PanneEssence";
+			return "Panne Essence";
 		case CREVAISON:
 			return "Crevaison";
 		case ACCIDENT:
