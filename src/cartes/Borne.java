@@ -11,4 +11,12 @@ public class Borne extends Carte {
 	public String toString() {
 		return "Borne - " + km;
 	}
+
+	public int getKm() {
+		return km;
+	}
+	
+	public boolean equals(Borne carte) {
+		return this.km == carte.getKm();
+	}
 }

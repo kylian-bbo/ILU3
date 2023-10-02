@@ -9,7 +9,7 @@ import cartes.Attaque;
 import cartes.Parade;
 
 
-public class testsFonctionnels {
+public class TestsFonctionnels {
 
 
 	public static void main(String[] args) throws Exception {

@@ -7,4 +7,12 @@ public abstract class Probleme extends Carte {
 		super(n);
 		this.type = t;
 	}
+	
+	public Type getType() {
+		return type;
+	}
+
+	public boolean equals(Probleme carte) {
+		return this.type == carte.getType(); //super.equals
+	}
 }
