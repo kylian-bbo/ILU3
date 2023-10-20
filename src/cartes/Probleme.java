@@ -11,7 +11,7 @@ public abstract class Probleme extends Carte {
 	public Type getType() {
 		return type;
 	}
-
+	
 	public boolean equals(Probleme carte) {
 		return this.type == carte.getType(); //super.equals
 	}
