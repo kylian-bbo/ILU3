@@ -1,5 +1,7 @@
 package cartes;
 
+import jeu.Joueur;
+
 public abstract class Carte {
 	protected int nombre;
 	
@@ -14,4 +16,11 @@ public abstract class Carte {
 	public boolean equals(Carte carte) {
 		return this.getClass() == carte.getClass(); // !null
 	}
+	
+	@Override
+	public int hashCode() {
+		return nombre;
+	}
+	
+	public abstract boolean appliquer(Joueur j);
 }

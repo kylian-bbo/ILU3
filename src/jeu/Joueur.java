@@ -78,10 +78,47 @@ public class Joueur {
 		return km;
 	}
 	
+	//TODO
 	public int getLimite() {
 		if (!limites.isEmpty() && limites.get(limites.size()) instanceof FinLimite)
-			
+			return 0; //Temp
 		
 		return 200;
+	}
+	
+	//TODO
+	public boolean estBloque() {
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return nom.hashCode();
+	}
+	
+	public Set<Coup> coupsPossibles(List<Joueur> participants) {
+		Set<Coup> coupsPossibles = new HashSet<>();
+		Coup coup;
+		
+		for (Joueur participant : participants)
+			for (Carte carte : main) {
+				coup = new Coup(carte, participant);
+				if (coup.estValide(participant))
+					coupsPossibles.add(coup);
+			}
+		
+		return coupsPossibles;
+	}
+	
+	public Set<Coup> coupsParDefault() {
+		Set<Coup> coupsParDefault = new HashSet<>();
+		Coup coup;
+		
+		for (Carte carte : main) {
+			coup = new Coup(carte, null);
+			coupsParDefault.add(coup);
+		}
+		
+		return coupsParDefault;
 	}
 }
