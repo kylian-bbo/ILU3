@@ -1,23 +1,23 @@
 package cartes;
 
-public class Parade extends Bataille {
+import jeu.Joueur;
 
+public class Parade extends Bataille {
+	
+	static {
+		stringType.put(Type.FEU, "Feu Vert");
+		stringType.put(Type.ESSENCE, "Essence");
+		stringType.put(Type.CREVAISON, "Roue De Secours");
+		stringType.put(Type.ACCIDENT, "Réparations");
+	}
+	
 	public Parade(Type t, int n) {
 		super(t, n);
 	}
 	
-	public String toString() {
-		switch (type) {
-		case FEU:
-			return "Feu Vert";
-		case ESSENCE:
-			return "Essence";
-		case CREVAISON:
-			return "Roue De Secours";
-		case ACCIDENT:
-			return "Reparations";
-		default:
-			return "";
-		}
+	@Override
+	public boolean appliquer(Joueur j) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

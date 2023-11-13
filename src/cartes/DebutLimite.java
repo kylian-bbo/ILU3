@@ -20,7 +20,10 @@ public class DebutLimite extends Limite {
 			if (botte.type == Type.FEU)
 				joueurPrioritaire = true;
 		
-		if (!joueurPrioritaire && )
+		if (!joueurPrioritaire && true) { //Temp
+			
+		}
 		
+		return false; //Temp
 	}
 }

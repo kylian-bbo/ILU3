@@ -23,6 +23,8 @@ public class Joueur {
 	private Collection<Borne> bornes = new ArrayList<>();
 	private Set<Botte> bottes = new HashSet<>();
 	
+	private Jeu jeu;
+	
 	public Joueur(String nom) {
 		this.nom = nom;
 	}
@@ -32,6 +34,10 @@ public class Joueur {
 		return nom;
 	}
 	
+	public void setJeu(Jeu jeu) {
+		this.jeu = jeu;
+	}
+
 	public Main getMain() {
 		return main;
 	}

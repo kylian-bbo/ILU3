@@ -3,26 +3,18 @@ package cartes;
 import jeu.Joueur;
 
 public class Botte extends Probleme {
-
-	public Botte(Type t, int n) {
-		super(t,n);
+	
+	static {
+		stringType.put(Type.FEU, "Vehicule Prioritaire");
+		stringType.put(Type.ESSENCE, "Citerne Essence");
+		stringType.put(Type.CREVAISON, "Increvable");
+		stringType.put(Type.ACCIDENT, "As Du Volant");
 	}
 	
-	public String toString() {
-		switch(type) {
-			case FEU:
-				return "Vehicule Prioritaire";
-			case ESSENCE:
-				return "Citerne Essence";
-			case CREVAISON:
-				return "Increvable";
-			case ACCIDENT:
-				return "As Du Volant";
-			default:
-				return "";
-		}
+	public Botte(Type t, int n) {
+		super(t, n);
 	}
-
+	
 	@Override
 	public boolean appliquer(Joueur j) {
 		j.getBottes().add(this);
