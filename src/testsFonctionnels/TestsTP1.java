@@ -22,7 +22,7 @@ public class TestsTP1 {
 		
 		System.out.println("2. a)");
 		while (!sabot.estVide())
-			System.out.println("	Je pioche " + sabot.piocher().toString()); 
+			System.out.println("\tJe pioche " + sabot.piocher().toString()); 
 		
 		// 2. b)
 		sabot.ajouterFamilleCarte(
@@ -34,7 +34,7 @@ public class TestsTP1 {
 		
 		System.out.println("\n2. b)");
 		while (!sabot.estVide()) {
-			System.out.println("	Je pioche " + iterateur.next().toString());
+			System.out.println("\tJe pioche " + iterateur.next().toString());
 			/* 2. c)
 			sabot.piocher();
 			sabot.ajouterFamilleCarte(new Botte(1, Type.ACCIDENT));
