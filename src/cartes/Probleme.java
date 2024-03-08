@@ -11,4 +11,12 @@ public abstract class Probleme extends Carte {
 	protected Type getType() {
 		return type;
 	}
+	
+	public boolean equals(Object obj) {
+		if (super.equals(obj)) {
+			Probleme p = (Probleme) obj;
+			return type.equals(p.type);
+		}
+		return false;
+	}
 }

@@ -10,4 +10,8 @@ public abstract class Carte {
 	public int getNombre() {
 		return nombre;
 	}
+	
+	public boolean equals(Object obj) {
+		return obj != null && obj.getClass() == getClass();
+	}
 }
