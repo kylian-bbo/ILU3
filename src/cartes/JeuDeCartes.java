@@ -2,6 +2,7 @@ package cartes;
 
 import java.util.LinkedList;
 import java.util.List;
+import utils.Utils;
 
 public class JeuDeCartes {
 	private Carte[] typesDeCartes = {
@@ -36,9 +37,13 @@ public class JeuDeCartes {
 	}
 	
 	private void initialiserListeCartes() {
+		List<Carte> listeTemp = new LinkedList<>();
+		
 		for (int i = 0; i < typesDeCartes.length; i++)
 			for (int j = 0; j < typesDeCartes[i].getNombre(); j++)
-				listeCartes.add(typesDeCartes[i]);
+				listeTemp.add(typesDeCartes[i]);
+		
+		listeCartes = Utils.melanger(listeTemp);
 	}
 	
 	public List<Carte> getListeCartes() {
