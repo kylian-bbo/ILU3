@@ -46,16 +46,16 @@ public class TestsTP2 {
 		System.out.println("\t" + listeCartes);
 		listeCartes = Utils.melanger(listeCartes);
 		System.out.println("\t" + listeCartes);
-		System.out.println("\t" + "liste mélangée sans erreur ? "
+		System.out.println("\t" + "liste melangee sans erreur ? "
 				+ Utils.verifierMelange(listeCarteNonMelangee, listeCartes));
 		listeCartes = Utils.rassembler(listeCartes);
 		System.out.println("\t" + listeCartes);
-		System.out.println("\t" + "liste rassemblée sans erreur ? " + Utils.verifierRassemblement(listeCartes));
+		System.out.println("\t" + "liste rassemblee sans erreur ? " + Utils.verifierRassemblement(listeCartes));
 	
 		// 7)
 		System.out.println("7)");
 		JeuDeCartes jeu2 = new JeuDeCartes();
-		System.out.println("\tNombre d'occurences de chaques cartes respecté ? " + jeu2.checkCount());
+		System.out.println("\tNombre d'occurences de chaques cartes respecte ? " + jeu2.checkCount());
 	
 	}
 }

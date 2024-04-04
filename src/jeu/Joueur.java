@@ -1,66 +1,40 @@
 package jeu;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
+import cartes.Carte;
+import cartes.Limite;
 import cartes.Bataille;
 import cartes.Borne;
 import cartes.Botte;
-import cartes.Carte;
-import cartes.FinLimite;
-import cartes.Limite;
-import cartes.Type;
 
 public class Joueur {
 	private String nom;
-	private Main main;
+	private ZoneDeJeu zoneDeJeu;
+	private IMain main;
 	
-	private List<Limite> limites;
-	private List<Bataille> batailles;
-	private Collection<Borne> bornes;
-	private Set<Botte> bottes;
-
 	public Joueur(String nom) {
 		this.nom = nom;
+		this.zoneDeJeu = new ZoneDeJeu();
 		this.main = new MainAsListe();
-		
-		limites = new LinkedList<>();
-		batailles = new LinkedList<>();
-		bornes = new LinkedList<>();
-		bottes = new HashSet<>();
 	}
 	
+	public String getNom() {
+		return nom;
+	}
+
 	public String toString() {
 		return nom;
 	}
 	
-	public Main getMain() {
+	public IMain getMain() {
 		return main;
-	}
-
-	public List<Limite> getLimites() {
-		return limites;
-	}
-
-	public List<Bataille> getBatailles() {
-		return batailles;
-	}
-
-	public Collection<Borne> getBornes() {
-		return bornes;
-	}
-
-	public Set<Botte> getBottes() {
-		return bottes;
 	}
 
 	public boolean equals(Object obj) {
 		if (obj != null && obj.getClass() == getClass()) {
 			Joueur joueur = (Joueur) obj;
-			return nom.equals(joueur.toString());
+			return nom.equals(joueur.getNom());
 		}
 		return false;
 	}
@@ -69,7 +43,7 @@ public class Joueur {
 		main.prendre(carte);
 		// Post-condition : La main contient la carte.
 	}
-	
+
 	public Carte prendreCarte(List<Carte> sabot) {
 		if (!sabot.isEmpty()) {
 			Carte carte = sabot.remove(0);
@@ -78,22 +52,32 @@ public class Joueur {
 		}
 		return null;
 	}
-	
-	public int getKM() {
-		int km = 0;
-		
-		for (Borne carte : bornes) {
-			km += carte.getKm();
-		}
-			
-		return km;
+
+	public void deposer(Borne borne) {
+		zoneDeJeu.deposer(borne);
 	}
-	
-	public int getLimite() {
-		if (limites.isEmpty()
-				|| limites.get(limites.size() - 1) instanceof FinLimite 
-				|| bottes.contains(new Botte(1, Type.FEU)))
-			return 200;
-		return 50;
+
+	public void deposer(Limite limite) {
+		zoneDeJeu.deposer(limite);
+	}
+
+	public void deposer(Bataille bataille) {
+		zoneDeJeu.deposer(bataille);
+	}
+
+	public void deposer(Botte botte) {
+		zoneDeJeu.deposer(botte);
+	}
+
+	public int donnerKmParcourus() {
+		return zoneDeJeu.donnerKmParcourus();
+	}
+
+	public int donnerLimitationVitesse() {
+		return zoneDeJeu.donnerLimitationVitesse();
+	}
+
+	public boolean estBloque() {
+		return zoneDeJeu.estBloque();
 	}
 }

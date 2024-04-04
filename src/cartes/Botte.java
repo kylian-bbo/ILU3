@@ -1,5 +1,7 @@
 package cartes;
 
+import java.util.Objects;
+
 public class Botte extends Probleme {
 
 	public Botte(int nombre, Type type) {
@@ -19,5 +21,11 @@ public class Botte extends Probleme {
 			default:
 				return "Erreur : Pas de type";
 		}
+	}
+
+	//Pour pouvoir faire correctement le contains() sur le HashSet de la classe ZoneDeJeu :
+	@Override
+	public int hashCode() {
+    	return Objects.hash(getType());
 	}
 }

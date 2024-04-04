@@ -6,7 +6,7 @@ import java.util.List;
 
 import cartes.Carte;
 
-public class MainAsListe implements Main {
+public class MainAsListe implements IMain {
 	private List<Carte> liste;
 	
 	public MainAsListe() {
@@ -28,5 +28,9 @@ public class MainAsListe implements Main {
 		assert liste.contains(carte);
 		
 		liste.remove(carte);
+	}
+
+	public String toString() {
+		return liste.toString();
 	}
 }
