@@ -1,6 +1,8 @@
 package jeu;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import cartes.Carte;
 import cartes.Limite;
@@ -79,5 +81,20 @@ public class Joueur {
 
 	public boolean estBloque() {
 		return zoneDeJeu.estBloque();
+	}
+	
+	public Set<Coup> coupsPossibles(Set<Joueur> participants) {
+		Set<Coup> coupsPossibles = new HashSet<>();
+		Coup coup;
+		
+		for (Joueur participant : participants)
+			for (Carte carte : main) {
+				coup = new Coup(carte, participant);
+				//TODO : Verifier estDepotAutorise et ajouter equals et hashCode dans la classe Coup
+				if (zoneDeJeu.estDepotAutorise(carte) && coup.estValide(this))
+					coupsPossibles.add(coup);
+			}
+				
+		return coupsPossibles;
 	}
 }

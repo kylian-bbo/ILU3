@@ -14,6 +14,7 @@ public class TestJoueur {
         
         // 10)
 		System.out.println("10)");
+		
 		Joueur j1 = new Joueur("Joueur 1");
 		
 		j1.deposer(new Borne(1, 75));
