@@ -7,12 +7,12 @@ import cartes.Botte;
 import cartes.Carte;
 import cartes.Parade;
 import cartes.Type;
-import jeu.Sabot;
+import jeu.SabotTP1;
 
 public class TestsTP1 {
 
 	public static void main(String[] args) throws Exception {
-		Sabot sabot = new Sabot();
+		SabotTP1 sabot = new SabotTP1();
 		
 		// 2. a)
 		sabot.ajouterFamilleCarte(

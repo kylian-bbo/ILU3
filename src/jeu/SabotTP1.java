@@ -6,45 +6,47 @@ import java.util.NoSuchElementException;
 
 import cartes.Carte;
 
-public class Sabot implements Iterable<Carte> {
-    private Carte[] sabot;
-    private int tailleSabot;
-    private int nbCartes;
-    private int nbOperations;
-    
-    public Sabot(int taille) {
-        this.sabot = new Carte[taille];
-        this.tailleSabot = taille;
-        this.nbCartes = 0;
+public class SabotTP1 implements Iterable<Carte>{
+	private static final int CAPACITE = 106;
+	
+	private Carte[] sabot;
+	private int nbCartes;
+	//(Pour l'iterateur)
+	private int nbOperations;
+	
+	
+	public SabotTP1() {
+		this.sabot = new Carte[CAPACITE];
+		this.nbCartes = 0;
 		this.nbOperations = 0;
-    }
-    
-    public boolean estVide() {
-        return nbCartes == 0;
-    }
+	}
+	
+	public boolean estVide() {
+		return nbCartes == 0;
+	}
 
-    public void ajouterCarte(Carte carte) throws Exception {
-        if (nbCartes < tailleSabot) {
-            sabot[nbCartes] = carte;
-            nbCartes++;
-        }
-        else
-            throw new Exception("Capacite du sabot atteinte.");
-    }
-    
-    public void ajouterFamilleCarte(Carte carte) throws Exception {
-        for (int i = 0; i < carte.getNombre(); i++) {
-            ajouterCarte(carte);
-        }
-    }
-    
-    public void ajouterFamilleCarte(Carte... cartes) throws Exception {
-        for (Carte carte : cartes) {
-            ajouterFamilleCarte(carte);
-        }
-    }
-    
-    public Carte piocher() {
+	private void ajouterCarte(Carte carte) throws Exception {
+		if (nbCartes < CAPACITE) {
+			sabot[nbCartes] = carte;
+			nbCartes++;
+		}
+		else
+			throw new Exception("Capacite du sabot atteinte.");
+	}
+	
+	public void ajouterFamilleCarte(Carte carte) throws Exception {
+		for (int i = 0; i < carte.getNombre(); i++) {
+			ajouterCarte(carte);
+		}
+	}
+	
+	public void ajouterFamilleCarte(Carte... cartes) throws Exception {
+		for (Carte carte : cartes) {
+			ajouterFamilleCarte(carte);
+		}
+	}
+	
+	public Carte piocher() {
 		Iterator<Carte> iterateur = iterator();
 		
 		Carte carte = iterateur.next();

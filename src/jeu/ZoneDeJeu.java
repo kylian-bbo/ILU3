@@ -158,7 +158,7 @@ public class ZoneDeJeu {
 		// si la carte est de type Bataille, on récupère dans la variable top le sommet 
 		// de la pile de batailles du joueur. Si la pile est vide, top désignera le feu
 		// vert lorsque le véhicule est prioritaire ou que la carte jouée est le feu rouge,
-		//et le feu rouge sinon.
+		// et le feu rouge sinon.
 		Bataille top;
 			
 		if (batailles.isEmpty()) {
@@ -169,12 +169,12 @@ public class ZoneDeJeu {
 		}
 		else
 			top = batailles.get(batailles.size() - 1);
-			
+
 		Type typeTop = top.getType();
 		// si top est une attaque et qu’il n’y a pas de botte du même type, la carte jouée
 		// peut être une parade du même type.
 		if (top instanceof Attaque
-				&& aBotteType(typeTop)
+				&& !aBotteType(typeTop)
 				&& bataille.equals(new Parade(1, typeTop)))
 			return true;
 		// si top est une parade, une attaque peut être jouée si le joueur n’a pas déposé
@@ -183,6 +183,38 @@ public class ZoneDeJeu {
 				&& bataille instanceof Attaque
 				&& !aBotteType((bataille.getType())))
 			return true;
+		
+		return false;
+	}
+
+	public boolean deposer(Carte c) {
+		if (estDepotAutorise(c)) {
+			if (c instanceof Borne) {
+				deposer((Borne) c);
+				return true;
+			}
+			if (c instanceof Botte) {
+				Botte botte = (Botte) c;
+				deposer(botte);
+				
+				if (!batailles.isEmpty()) {
+					Bataille topBatailles = batailles.get(batailles.size() - 1);
+					
+					if (topBatailles instanceof Attaque && topBatailles.getType() == botte.getType())
+						batailles.remove(batailles.size() - 1);
+				}
+	
+				return true;
+			}
+			if (c instanceof Limite) {
+				deposer((Limite) c);
+				return true;
+			}
+			if (c instanceof Bataille) {
+				deposer((Bataille) c);
+				return true;
+			}
+		}
 		
 		return false;
 	}

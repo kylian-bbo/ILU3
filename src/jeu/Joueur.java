@@ -3,6 +3,7 @@ package jeu;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Random;
 
 import cartes.Carte;
 import cartes.Limite;
@@ -90,11 +91,36 @@ public class Joueur {
 		for (Joueur participant : participants)
 			for (Carte carte : main) {
 				coup = new Coup(carte, participant);
-				//TODO : Verifier estDepotAutorise et ajouter equals et hashCode dans la classe Coup
+
 				if (zoneDeJeu.estDepotAutorise(carte) && coup.estValide(this))
 					coupsPossibles.add(coup);
 			}
 				
 		return coupsPossibles;
+	}
+
+	public Set<Coup> coupsDefausse() {
+		Set<Coup> coupsDefausse = new HashSet<>();
+
+		for (Carte carte : main)
+			coupsDefausse.add(new Coup(carte, null));
+
+		return coupsDefausse;
+	}
+
+	public boolean deposer(Carte c) {
+		return zoneDeJeu.deposer(c);
+	}
+
+	public void retirerDeLaMain(Carte carte) {
+		main.jouer(carte);
+	}
+
+	public Coup choisirCoup(Set<Coup> coupsPossibles) {
+		//Random temporairement ?
+		Random random = new Random();
+		Object[] coups = coupsPossibles.toArray();
+		
+		return (Coup) coups[random.nextInt(coupsPossibles.size())];
 	}
 }
