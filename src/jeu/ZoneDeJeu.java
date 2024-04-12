@@ -179,12 +179,9 @@ public class ZoneDeJeu {
 			return true;
 		// si top est une parade, une attaque peut être jouée si le joueur n’a pas déposé
 		// la botte correspondante
-		if (top instanceof Parade
+		return (top instanceof Parade
 				&& bataille instanceof Attaque
-				&& !aBotteType((bataille.getType())))
-			return true;
-		
-		return false;
+				&& !aBotteType((bataille.getType())));
 	}
 
 	public boolean deposer(Carte c) {

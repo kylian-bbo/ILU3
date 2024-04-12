@@ -22,7 +22,7 @@ public class TestJeu {
         jeu.inscrire(j1);
         jeu.inscrire(j2);
         jeu.distribuerCartes();
-        jeu.JouerTour();
+        jeu.jouerTourTP4();
 
         System.out.println();
     }

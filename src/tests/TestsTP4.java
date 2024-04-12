@@ -34,8 +34,8 @@ public class TestsTP4 {
                         };
 
         for (Carte carte : cartes) {
-            System.out.println("\tDeposer " + carte.toString() + " : depot ok ? " + jt.deposer(carte)
-                                + ", bloque ? " + jt.estBloque());
+            System.out.println("\tDeposer " + carte.toString());
+            System.out.println("\tdepot ok ? " + jt.deposer(carte) + ", bloque ? " + jt.estBloque());
         }
     }
 }

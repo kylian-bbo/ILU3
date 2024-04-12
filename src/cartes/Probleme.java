@@ -1,7 +1,12 @@
 package cartes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Probleme extends Carte {
-	private Type type;
+	
+	protected Type type;
+	static final Map<Type,String> map = new HashMap<>();
 	
 	protected Probleme(int nombre, Type type) {
 		super(nombre);
@@ -12,6 +17,7 @@ public abstract class Probleme extends Carte {
 		return type;
 	}
 	
+	@Override
 	public boolean equals(Object obj) {
 		if (super.equals(obj)) {
 			Probleme p = (Probleme) obj;
