@@ -10,13 +10,11 @@ public class Album implements Iterable<Musique> {
 	private int annee;
 	private List<Musique> musiques;
 	
-	public Album(String nom, String artiste, int annee, Musique... musiques) {
+	public Album(String nom, String artiste, int annee) {
 		this.nom = nom;
 		this.artiste = artiste;
 		this.annee = annee;
 		this.musiques = new ArrayList<>();
-		
-		ajouterMusiques(musiques);
 	}
 
 	public String getNom() {
@@ -42,15 +40,30 @@ public class Album implements Iterable<Musique> {
 	}
 
 	public String toString() {
-		String string = nom + ", " + artiste + ", " + annee + '\n';
+		String string = "\t~ " + nom + ", " + artiste + ", " + annee + '\n';
 
 		for (Musique musique : musiques)
 			string += "\t" + musique.toString() + '\n';
 	
 		return string;
 	}
+
 	@Override
 	public Iterator<Musique> iterator() {
 		return musiques.iterator();
+	}
+
+	@Override
+	public int hashCode() {
+		return 31 * (nom.hashCode() + artiste.hashCode() + annee);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj != null && obj.getClass() == getClass()) {
+			Album alb = (Album) obj;
+			return nom.equals(alb.getNom()) && artiste.equals(alb.getArtiste()) && annee == alb.getAnnee();
+		}
+		return false;
 	}
 }
