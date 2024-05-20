@@ -10,7 +10,7 @@ public class InterfaceUtilisateur {
     private static final String FIN_ROUGE = "\033[0m";
 
     private static Scanner scanner;
-    private static int etat;
+    private static int choix;
     private static GestionCollectionMusicale gestionCollectionMusicale;
     
     protected static void demarrage() {
@@ -22,7 +22,7 @@ public class InterfaceUtilisateur {
         System.out.print("Appuyez sur la touche Entrée pour commencer.");
         scanner.nextLine();
 
-        etat = 0;
+        choix = 0;
         gestionCollectionMusicale = new GestionCollectionMusicale(GenerationCollectionMusicale.genererCollectionMusicale());
 
         effacerTerminal();
@@ -43,14 +43,14 @@ public class InterfaceUtilisateur {
                 + "3 - Quitter le programme.\n"
                 );
                 System.out.print("Votre choix : ");
-                etat = scanner.nextInt();
+                choix = scanner.nextInt();
 
-                if (etat < 1 || etat > 3 || etat == '\n')
+                if (choix < 1 || choix > 3 || choix == '\n')
                     throw new InputMismatchException();
 
                 entreeCorrecte = true;
             
-            } catch (InputMismatchException exception) {
+            } catch (InputMismatchException e) {
                 effacerTerminal();
                 afficherLogo();
                 System.out.println(ROUGE + "Erreur : Entrée incorrecte, réessayez.\n" + FIN_ROUGE);
@@ -65,14 +65,12 @@ public class InterfaceUtilisateur {
     }
     
     private static void menuSwitch() {
-        afficherLogo();
-        switch(etat) {
+        switch(choix) {
             case 1:
-                //TODO : Tri de la collection musicale
-                System.out.println(ROUGE + "Erreur : Pas encore implémenté.\n" + FIN_ROUGE);
-                afficherEntreePourRevenirAuMenu();
+                menuTri();
                 break;
             case 2:
+                afficherLogo();
                 System.out.println("Affichage de la collection musicale :\n");
                  gestionCollectionMusicale.afficherCollectionMusicale();
                 afficherEntreePourRevenirAuMenu();
@@ -81,13 +79,67 @@ public class InterfaceUtilisateur {
                 finProgramme();
                 return;
             default:
-                System.out.println("Erreur : Problème swith(etat), retour au menu principal.");
+                System.out.println("Erreur : Problème menuSwitch, retour au menu principal.");
                 break;
          }
+        choix = 0;
         menu();
     }
 
-    public static void finProgramme() {
+    private static void menuTri() {
+        afficherLogo();
+        Boolean entreeCorrecte = false;
+
+        while (!entreeCorrecte) {
+            try {
+                System.out.println(
+                    "Dans quel ordre souhaitez vous lire les musique ? (Entrez 1, 2 ou 3)\n" +
+                    "1 - Dans l'ordre alphabétique des chansons\n" +
+                    "2 - Dans l'ordre alphabétique des artistes\n" +
+                    "3 - Dans l'ordre de durée des musique\n"
+                );
+                System.out.print("Votre choix : ");
+                choix = scanner.nextInt();
+
+                if (choix < 1 || choix > 3 || choix == '\n')
+                    throw new InputMismatchException();
+
+                entreeCorrecte = true;
+            } catch (InputMismatchException e) {
+                effacerTerminal();
+                afficherLogo();
+                System.out.println(ROUGE + "Erreur : Entrée incorrecte, réessayez.\n" + FIN_ROUGE);
+                scanner.nextLine();
+            }
+        } 
+
+        scanner.nextLine();
+        effacerTerminal();
+
+        menuTriSwitch();
+    }
+
+    private static void menuTriSwitch() {
+        switch(choix) {
+            case 1:
+                //TODO : Lien Ocaml
+                break;
+            case 2:
+                //TODO : Lien Ocaml
+                break;
+            case 3:
+                //TODO : Lien Ocaml
+                return;
+            default:
+                System.out.println("Erreur : Problème menuTriSwitch, retour au menu principal.");
+                break;
+         }
+        
+        choix = 0;
+        menu();
+    }
+
+    private static void finProgramme() {
         scanner.close();
         effacerTerminal();
         System.out.println("Arrêt du programme.");
