@@ -39,8 +39,12 @@ public class Album implements Iterable<Musique> {
 			ajouterMusique(musique);
 	}
 
+	public void supprimerMusique(List<Musique> musiquesASupprimer) {
+		musiques.removeAll(musiquesASupprimer);
+	}
+
 	public String toString() {
-		String string = "\t~ " + nom + ", " + artiste + ", " + annee + '\n';
+		String string = "\t~ Nom : " + nom + ", Artiste : " + artiste + ", Année : " + annee + '\n';
 
 		for (Musique musique : musiques)
 			string += "\t" + musique.toString() + '\n';

@@ -1,9 +1,12 @@
 package musiques;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
-public class CollectionMusicale {
+public class CollectionMusicale implements Iterable<Album> {
     private Set<Album> albums;
     private int nbAlbums;
 
@@ -32,5 +35,20 @@ public class CollectionMusicale {
             string += "\n" + album.toString().replace("\n", "\n\t");
         
         return string;
+    }
+
+    public Musique[] getMusiques() {
+        List<Musique> listeMusiques = new ArrayList<>();
+        
+        for (Album album : albums)
+            for (Musique musique : album)
+                listeMusiques.add(musique);
+        
+        return listeMusiques.toArray(new Musique[0]);
+    }
+
+    @Override
+    public Iterator<Album> iterator() {
+        return albums.iterator();
     }
 }

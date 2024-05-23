@@ -34,7 +34,7 @@ public class Musique {
 	}
 
 	public String toString() {
-		return numPiste + " - " + nom + ", " + duree.toString();
+		return "Titre : " + nom + ", N° : " + numPiste + ", Durée : " + duree.toString();
 	}
 
 	private class Duree {
